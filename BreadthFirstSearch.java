@@ -21,33 +21,33 @@ public class BreadthFirstSearch {
 	/**
 	 * Calculate the shortest path between two actors
 	 * 
-	 * @param start Name of the first actor
-	 * @param query Name of the second actor
+	 * @param first Name of the first actor
+	 * @param second Name of the second actor
 	 * @return List serving as the shortest path between actors
 	 */
-	public List<String> shortestPath(String start, String query) {
+	public List<String> shortestPath(String first, String second) {
 		if (found) {
 			return results;
 		}
-		if (start.equals(query)) {
+		if (first.equals(second)) {
 			found = true;
 			results = new LinkedList<>();
-			results.add(start);
+			results.add(first);
 			return results;
 		}
-		return bfs(start, query);
+		return bfs(first, second);
 	}
 
 	/**
 	 * Helper function to calculate the shortest path
 	 * 
-	 * @param start Starting name
+	 * @param first Starting name
 	 * @param Query query name
 	 * @return List of shortest path between two actors
 	 */
-	private List<String> bfs(String start, String query) {
-		queue.add(new Pair(start, g.getAdjacencyMap().get(start)));
-		visited.add(start);
+	private List<String> bfs(String first, String second) {
+		queue.add(new Pair(first, g.getAdjacencyMap().get(first)));
+		visited.add(first);
 
 		while (!queue.isEmpty()) {
 			for (String s : queue.peek().getValue()) {
@@ -58,7 +58,7 @@ public class BreadthFirstSearch {
 				queue.add(new Pair(s, g.getAdjacencyMap().get(s)));
 				parents.put(s, queue.peek().getKey());
 
-				if (s.equals(query)) {
+				if (s.equals(second)) {
 					found = true;
 					break;
 				}
@@ -69,13 +69,13 @@ public class BreadthFirstSearch {
 			return null;
 		}
 		List<String> output = new LinkedList<>();
-		String currentPerson = query;
+		String currentPerson = second;
 
-		while (!currentPerson.equals(start)) {
+		while (!currentPerson.equals(first)) {
 			output.add(0, currentPerson);
 			currentPerson = parents.get(currentPerson);
 		}
-		output.add(0, start);
+		output.add(0, first);
 		return output;
 	}
 }
