@@ -38,6 +38,10 @@ public class Graph {
 		adjacencyMap.get(name2).add(name1);
 	}
 
+	/**
+	 * Get the adjacency map elsewhere
+	 * @return adjacency map
+	 */
 	public Map<String, Set<String>> getAdjacencyMap() {
 		return this.adjacencyMap;
 	}

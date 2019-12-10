@@ -4,7 +4,6 @@ public class BreadthFirstSearch {
 	private Graph g;
 	private Queue<Pair> queue;
 	private Set<String> visited;
-	private String start, query;
 	private Map<String, String> parents;
 	private List<String> results;
 	private boolean found;
